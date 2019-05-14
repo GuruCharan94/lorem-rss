@@ -121,7 +121,7 @@
       pubDate: pubDate.clone().toDate()
     });
     pubDate = getNearest(interval, unit);
-    for (i = j = 0; j < 10; i = ++j) {
+    for (i = j = 0; j <= 1; i = ++j) {
       feed.item({
         title: `Lorem ipsum ${pubDate.format()}`,
         description: loremIpsum({
