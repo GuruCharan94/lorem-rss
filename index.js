@@ -121,18 +121,16 @@
       pubDate: pubDate.clone().toDate()
     });
     pubDate = getNearest(interval, unit);
-    for (i = j = 0; j <= 1; i = ++j) {
-      feed.item({
-        title: `Lorem ipsum ${pubDate.format()}`,
-        description: loremIpsum({
-          random: seedRandom(pubDate.unix())
-        }),
-        url: `http://example.com/test/${pubDate.format('X')}`,
-        author: 'John Smith',
-        date: pubDate.clone().toDate()
-      });
-      pubDate = pubDate.subtract(interval, unit);
-    }
+    feed.item({
+      title: `Lorem ipsum ${pubDate.format()}`,
+      description: loremIpsum({
+        random: seedRandom(pubDate.unix())
+      }),
+      url: `http://example.com/test/${pubDate.format('X')}`,
+      author: 'John Smith',
+      date: pubDate.clone().toDate()
+    });
+    pubDate = pubDate.subtract(interval, unit);
     etagString = feed.pubDate + interval + unit;
     response.set('Content-Type', 'application/rss+xml');
     response.set('ETag', `"${crypto.createHash('md5').update(etagString).digest("hex")}"`);
